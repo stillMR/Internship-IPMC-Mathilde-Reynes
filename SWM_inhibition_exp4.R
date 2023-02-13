@@ -9,31 +9,31 @@ library(ggpubr)
 library(cowplot)
 
 ###DATA
-#Chargement des données (il faut mettre le raccourci du dossier dans lequel est situé ton fichier csv)
+#Chargement des donnÃ©es (il faut mettre le raccourci du dossier dans lequel est situÃ© ton fichier csv)
 data <- as.data.frame(read.csv("C:/Users/reyne/Desktop/MaxMath/ProjManip10.csv",sep=";"),headers=TRUE)
-#On renomme les colonnes car il y a un bug sur la première
+#On renomme les colonnes car il y a un bug sur la premiÃ¨re
 colnames(data) <- c("Mice","Score","Group","Day","Cage")
-#On transforme les données de "catégorie" comme la cage, le traitement ou les souris avec as.factor pour qu'elles soient bien traitées comme catégories (factors) et non autre chose (numrical)
+#On transforme les donnÃ©es de "catÃ©gorie" comme la cage, le traitement ou les souris avec as.factor pour qu'elles soient bien traitÃ©es comme catÃ©gories (factors) et non autre chose (numrical)
 data$Mice <- as.factor(data$Mice)
 data$Group <- as.factor(data$Group)
 data$Cage <- as.factor(data$Cage)
-#On centre la variable de temps "Day" que l'on veut considerer comme une variable continue et non catégorie pour des raisons stats (+ de pouvoir stat comme ça).
-#On la centre pour éviter une inflation de la variance (si je ne m'abuse c'est ça) + c'est quasi toujours ce qui est fait en analyse data
+#On centre la variable de temps "Day" que l'on veut considerer comme une variable continue et non catÃ©gorie pour des raisons stats (+ de pouvoir stat comme Ã§a).
+#On la centre pour Ã©viter une inflation de la variance (si je ne m'abuse c'est Ã§a) + c'est quasi toujours ce qui est fait en analyse data
 data$Day <- data$Day-mean(data$Day)
-#On peut juste regarder nos données pour s'assurer que tout est ok
+#On peut juste regarder nos donnÃ©es pour s'assurer que tout est ok
 head(data)
 #On retire la souris 1_1 car mauvaise injection
 data<-data[!(data$Mice=="1_1"),]
 
 ###MODEL
-#GLM avec données booléennes (1 ou 0)
+#GLM avec donnÃ©es boolÃ©ennes (1 ou 0)
 model <- glmer(Score ~ Group+Day+(Day|Mice), data=data, family="binomial")
-#On call summary pour voir tous les résultats stats de notre modèle
+#On call summary pour voir tous les rÃ©sultats stats de notre modÃ¨le
 summary(model)
 
 ###TESTING MODEL'S ASSUMPTIONS
-#Lors d'une regression linéaire "standard" on doit vérifier que les "residuals" sont gaussiens.
-#Dans le cas d'un GLMM, il faut vérifier si les "residuals" sont gaussiens mais cela est plus complexe. Pour cela on va utiliser un autre package.
+#Lors d'une regression linÃ©aire "standard" on doit vÃ©rifier que les "residuals" sont gaussiens.
+#Dans le cas d'un GLMM, il faut vÃ©rifier si les "residuals" sont gaussiens mais cela est plus complexe. Pour cela on va utiliser un autre package.
 #https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html
 #le site donne des explications sur le pourquoi du comment + le package
 install.packages("DHARMa") #c long c normal
@@ -42,11 +42,11 @@ simulationOutput <- simulateResiduals(fittedModel = model, plot = F)
 residuals(simulationOutput)
 plot(simulationOutput)
 #Voir le lien ci-dessus pour l'explication des figures
-#On peut aussi faire des tests stats en plus (décris sur le lien)
+#On peut aussi faire des tests stats en plus (dÃ©cris sur le lien)
 
 
 ###ET VOILA
-#Attention les valeurs de la GLMM ne sont pas à considérer directement de la sorte elles doivent être retransformées (car elles sont passées par la fonction logit donc utiliser plogis pour avoir les "vraies valeurs")
+#Attention les valeurs de la GLMM ne sont pas Ã  considÃ©rer directement de la sorte elles doivent Ãªtre retransformÃ©es (car elles sont passÃ©es par la fonction logit donc utiliser plogis pour avoir les "vraies valeurs")
 #example:
 plogis(1.29879)
 
@@ -58,7 +58,7 @@ colnames(datamean) <- c("Mice","MeanScore","Day","Group")
 datamean<-datamean[!(datamean$Mice=="1_1"),]
 
 model <- glmer(MeanScore ~ Group+Day+(Day|Mice), data=datamean, family="binomial")
-#On call summary pour voir tous les résultats stats de notre modèle
+#On call summary pour voir tous les rÃ©sultats stats de notre modÃ¨le
 summary(model)
 
 
