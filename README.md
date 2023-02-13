@@ -1,21 +1,7 @@
 # Internship-IPMC-Mathilde-Reynes
 
-Hello world,
+Find the direct link to the Google docs here. 
+The files are also available as .xlsx above this text. 
 
-You'll find in the branch Maze Automation:
-- test code for doors
-- test code for LCD
-- code for full automation (object oriented)
-
-You'll find in the branch Spatial Working Memory:
-- my R code for statistical analysis of the spatial working memory task
-
-You'll find in the branch Episodic Like Memory:
-- the excel sheets for the two experiments on sound duration discrimination
-
-You'll find in the branch Internship Report:
-- my written thesis
-- all the plots/figures used
-
-Best,
-Mathilde
+First experiment : https://docs.google.com/spreadsheets/d/1sIoJMtquMFU8Nq2WFRfU8Sd7f0ao6avTmhYHb-rhpXo/edit?usp=sharing
+Second experiment : https://docs.google.com/spreadsheets/d/1p3F-12hSzHl2Q4oCFOFU0u6K-fEtuCb2EAF-lUWRWhA/edit?usp=sharing
