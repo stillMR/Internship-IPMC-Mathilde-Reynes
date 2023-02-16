@@ -16,6 +16,7 @@ You'll find in the branch Episodic Like Memory:
 You'll find in the branch Internship Report:
 - my written thesis
 - all the plots/figures used
+- the slides of my bibliography (that I presented whenever we were meeting)
 
 Best,
 Mathilde
