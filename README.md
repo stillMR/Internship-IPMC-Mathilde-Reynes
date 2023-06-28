@@ -1,5 +1,3 @@
-# Internship-IPMC-Mathilde-Reynes
-
 Hello world,
 
 You'll find in the branch Maze Automation:
